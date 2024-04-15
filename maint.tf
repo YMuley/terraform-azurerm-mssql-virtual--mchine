@@ -91,7 +91,7 @@ resource "azurerm_mssql_virtual_machine" "sql_server" {
           for_each = storage_configuration.value.temp_db_settings == [] ? [] : storage_configuration.value.temp_db_settings
           content {
             default_file_path         = temp_db_settings.value.default_file_path
-            luns                      = temp_db_settings.value.default_file_path
+            luns                      = temp_db_settings.value.luns
             data_file_count           = temp_db_settings.value.data_file_count
             data_file_size_mb         = temp_db_settings.value.data_file_size_mb
             data_file_growth_in_mb    = temp_db_settings.value.data_file_growth_in_mb
