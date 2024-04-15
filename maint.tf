@@ -110,8 +110,8 @@ resource "azurerm_mssql_virtual_machine" "sql_server" {
       dynamic "schedule" {
         for_each = assessment.value.schedule
         content {
-          weekly_interval       = schedule.value.monthly_occurrence != null && schedule.value.weekly_interval == [null || 0] ? null : schedule.value.weekly_interval 
-          monthly_occurrence    = schedule.value.weekly_interval != null && schedule.value.monthly_occurrence == [null || 0 ] ? null : schedule.value.monthly_occurrence
+          weekly_interval       = schedule.value.monthly_occurrence != null && schedule.value.weekly_interval == [null || "0"] ? null : schedule.value.weekly_interval 
+          monthly_occurrence    = schedule.value.weekly_interval != null && schedule.value.monthly_occurrence == [null || "0" ] ? null : schedule.value.monthly_occurrence
           day_of_week           = schedule.value.day_of_week
           start_time            = schedule.value.start_time
         }
