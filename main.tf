@@ -22,7 +22,7 @@ resource "azurerm_mssql_virtual_machine" "sql_server" {
         for_each = each.value.auto_backup == [] ? [] : each.value.auto_backup
      content {
           encryption_enabled               = auto_backup.value.encryption_enabled
-          encryption_password              = auto_backup.value.encryption_enabled != true ? [] : auto_backup.value.encryption_enabled 
+          encryption_password              = auto_backup.value.encryption_enabled != true ? null : auto_backup.value.encryption_enabled 
           retention_period_in_days         = auto_backup.value.retention_period_in_days
           storage_blob_endpoint            = var.storage_account_output[auto_backup.value.storage_blob_endpoint].primary_blob_endpoint #format("https://%s.blob.core.windows.net/",auto_backup.value.storage_blob_endpoint)
           storage_account_access_key       = var.storage_account_output[auto_backup.value.storage_blob_endpoint].primary_access_key     #auto_backup.value.storage_account_access_key
