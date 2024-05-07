@@ -9,3 +9,9 @@ variable "windows_vm_output" {
   default = {}
   description = "object list of windows vm"
 } 
+
+variable "storage_account_output" {
+  type = map(any)
+  default = {}
+  description = "object list of storage account"
+}
