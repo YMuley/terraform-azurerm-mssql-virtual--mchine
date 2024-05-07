@@ -45,9 +45,9 @@ resource "azurerm_mssql_virtual_machine" "sql_server" {
       for_each = each.value.key_vault_credential == [] ? [] : each.value.key_vault_credential
       content {
         name                      = key_vault_credential.value.name
-        key_vault_url             = key_vault_credential.value.key_vault_url
+        key_vault_url             = format("https://%s.vault.azure.net/",key_vault_credential.value.name)
         service_principal_name    = key_vault_credential.value.service_principal_name
-        service_principal_secret  = key_vault_credential.value.service_principal_secretkk
+        service_principal_secret  = key_vault_credential.value.service_principal_secret
       } 
     }
 
